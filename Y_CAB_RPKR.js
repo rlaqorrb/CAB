@@ -64,12 +64,28 @@ function cab(){
         console.log(i);
         let year = statistic[i].TIME;
         let val = parseInt(statistic[i].DATA_VALUE /100);
-        $('.table').append(
-          `<tr>
-            <th>${year}</th>
-            <td>${val}억$</td>
-          </tr>`
-        )
+        if(val < 0){
+          $('.table').append(
+            `<tr>
+              <th>${year}</th>
+              <td class='blue'>${val}억$</td>
+            </tr>`
+          )
+        } else if(val > 0){
+          $('.table').append(
+            `<tr>
+              <th>${year}</th>
+              <td class='red'>${val}억$</td>
+            </tr>`
+          )
+        } else {
+          $('.table').append(
+            `<tr>
+              <th>${year}</th>
+              <td>${val}억$</td>
+            </tr>`
+          )
+        }
       }
     }
   })

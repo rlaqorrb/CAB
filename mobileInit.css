@@ -1,0 +1,13 @@
+@media screen and (max-width: 1000px) {
+  nav{
+    font-size: 0.5vw;
+  }
+
+  .nav_con{
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu{
+    width: 100%;
+  }
+}

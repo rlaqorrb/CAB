@@ -75,26 +75,54 @@ function cab() {
       );
       let statistic = resp?.StatisticSearch?.row;
       if(statistic){
+        let total = 0;
         for (let i = 0; i < statistic?.length; i++) {
           console.log(i);
           let year = statistic?.[i]?.TIME ?? '정보없음';
           let val = parseInt(statistic?.[i]?.DATA_VALUE / 100) ?? '정보없음';
           console.log(year, val)
-          $('.table').append(
-            `<tr>
-              <th>${year}</th>
-              <td>${val}억$</td>
-            </tr>`
-          )
+          total += val;
+          if(val < 0){
+            $('.table').append(
+              `<tr>
+                <th>${year}</th>
+                <td class='blue'>${val}억$</td>
+              </tr>`
+            )
+          } else if(val > 0){
+            $('.table').append(
+              `<tr>
+                <th>${year}</th>
+                <td class='red'>${val}억$</td>
+              </tr>`
+            )
+          } else {
+            $('.table').append(
+              `<tr>
+                <th>${year}</th>
+                <td>${val}억$</td>
+              </tr>`
+            )
+          }
+          if(i == statistic.length -1){
+            $('.table').append(
+              `<tr>
+                <th>총합</th>
+                <td>${total}억$</td>
+              </tr>`
+            );
+          }
         }
       } else {
         $('.table').append(
           `<tr>
-            <th>정보없음</th>
-            <td>정보없음</td>
+          <th>정보없음</th>
+          <td>정보없음</td>
           </tr>`
-        )
-      }
+          )
+        }
+
+
     }
   })
 }
